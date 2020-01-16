@@ -15,9 +15,9 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 
 
 def get_input():
-    train_data_location = "C:\\Users\\Alaleh\\Desktop\\train\\train.csv"
+    train_data_location = "train.csv"
     x_train= pd.read_csv(train_data_location, index_col=False)
-    test_data_location = "C:\\Users\\Alaleh\\Desktop\\train\\test.csv"
+    test_data_location = "test.csv"
     x_test = pd.read_csv(test_data_location, index_col=False)
     submission=pd.read_csv('sample_submission.csv', index_col=False)
     y_train = x_train['TripType'].values
@@ -45,7 +45,6 @@ class PreProcessing:
 
     def label(self):
         for col in self.cat_cols:
-            print(col)
             le = LabelEncoder()
             self.x_train[col] = le.fit_transform(self.x_train[col].astype(str))
             self.x_test[col]=le.transform(self.x_test[col].astype(str))
